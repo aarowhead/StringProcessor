@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'junit:junit:4.12'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile project(path: ':shared')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
