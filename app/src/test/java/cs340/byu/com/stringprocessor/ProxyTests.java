@@ -34,4 +34,27 @@ public class ProxyTests {
     public void parseIntProxyException(){
         Integer returnInt = StringProcessorProxy.getInstance().parseInteger("twelve");
     }
+
+    @Test
+    public void parseIntCommand(){
+        Integer returnInt = StringProcessorProxy.getInstance().command("parseInt", "-12", Integer.class);
+        assertEquals(returnInt, testNegative);
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void parseIntCommandException(){
+        Integer returnInt = StringProcessorProxy.getInstance().command("parseInt", "twelve", Integer.class);
+    }
+
+    @Test
+    public void toLowerCaseCommand(){
+        String returnString = StringProcessorProxy.getInstance().command("toLowerCase", "TESTING", String.class);
+        assertEquals(returnString, "testing");
+    }
+
+    @Test
+    public void trimCommand(){
+        String returnString = StringProcessorProxy.getInstance().command("trim", "  CS 340   ", String.class);
+        assertEquals(returnString, "CS 340");
+    }
 }

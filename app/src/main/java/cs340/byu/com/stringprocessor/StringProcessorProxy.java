@@ -1,5 +1,6 @@
 package cs340.byu.com.stringprocessor;
 
+import com.shared.Command;
 import com.shared.IStringProcessor;
 import com.shared.IntPasser;
 import com.shared.StringPasser;
@@ -53,6 +54,15 @@ public class StringProcessorProxy implements IStringProcessor {
             return null;
         }
         return returned.getParsedInt();
+    }
+
+    public <T> T command(String command, String editString, Class<T> classType){
+        Command editCommand = new Command(command);
+        editCommand.setEditString(editString);
+
+        T returned = ClientCommunicator.getInstance().sendRequest("/command", editCommand, classType);
+
+        return returned;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.server;
 
+import com.server.handlers.CommandHandler;
 import com.server.handlers.LowerCaseHandler;
 import com.server.handlers.ParseIntHandler;
 import com.server.handlers.TrimHandler;
@@ -34,6 +35,7 @@ public class ServerCommunicator{
     private void createContexts(){
         System.out.println("Creating Contexts");
 
+        server.createContext("/command", new CommandHandler());
         server.createContext("/lowercase", new LowerCaseHandler());
         server.createContext("/parseInt", new ParseIntHandler());
         server.createContext("/trim", new TrimHandler());

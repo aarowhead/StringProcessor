@@ -41,7 +41,7 @@ public class ClientCommunicator {
         return communicator;
     }
 
-    public <T> T sendRequest(String urlSuffix, StringPasser editString, Class<T> returnType){
+    public <T> T sendRequest(String urlSuffix, Object editString, Class<T> returnType){
         try {
             Gson gson = new Gson();
 

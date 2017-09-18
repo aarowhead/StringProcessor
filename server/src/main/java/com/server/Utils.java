@@ -1,6 +1,7 @@
 package com.server;
 
 import com.google.gson.Gson;
+import com.server.handlers.CommandHandler;
 import com.shared.StringPasser;
 import com.sun.net.httpserver.HttpExchange;
 
@@ -46,6 +47,14 @@ public class Utils {
         Reader myReader = new InputStreamReader(exchange.getRequestBody());
 
         return gson.fromJson(myReader, StringPasser.class);
+    }
+
+    public CommandExec readInCommand(HttpExchange exchange){
+        Gson gson = new Gson();
+
+        Reader myReader = new InputStreamReader(exchange.getRequestBody());
+
+        return gson.fromJson(myReader, CommandExec.class);
     }
 
 }
