@@ -19,13 +19,19 @@ public class ParseIntHandler implements HttpHandler {
 
         StringPasser stringRequest = Utils.getInstance().readInStringPasser(exchange);
 
-        Integer myResult = StringProcessor.getInstance().parseInteger(stringRequest.getChangeString());
-
         IntPasser intResult = new IntPasser();
-        intResult.setParsedInt(myResult);
+        try {
+            Integer myResult = StringProcessor.getInstance().parseInteger(stringRequest.getChangeString());
 
-        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+            intResult.setParsedInt(myResult);
+
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+
+        }catch (NumberFormatException e){
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_ACCEPTABLE, 0);
+        }
 
         Utils.getInstance().writeOut(intResult, exchange);
+
     }
 }

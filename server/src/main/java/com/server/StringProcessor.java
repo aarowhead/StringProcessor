@@ -1,18 +1,16 @@
 package com.server;
 
-/**
- * Created by Aaron on 9/16/2017.
- */
+import com.shared.IStringProcessor;
 
 //Singleton
-public class StringProcessor {
+public class StringProcessor implements IStringProcessor{
 
-    private static StringProcessor myProc;
+    private static IStringProcessor myProc;
 
     private StringProcessor(){
     }
 
-    public static StringProcessor getInstance(){
+    public static IStringProcessor getInstance(){
         if(myProc == null){
             myProc = new StringProcessor();
         }
